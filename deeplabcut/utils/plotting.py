@@ -62,8 +62,9 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
         y = Dataframe[scorer][bp]['y'].values[Index]*(15/115.97)
         plt.plot(x,y,'.',color=colors(bpindex),alpha=alphavalue)
 
+    
     plt.gca().invert_yaxis()
-
+    plt.set(xlim=(0, 75), ylim=(0, 75))
 
     sm = plt.cm.ScalarMappable(cmap=plt.get_cmap(cfg['colormap']), norm=plt.Normalize(vmin=0, vmax=len(bodyparts2plot)-1))
     sm._A = []
@@ -71,7 +72,7 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     cbar.set_ticklabels(bodyparts2plot)
     plt.xlabel('X position in mm')
     plt.ylabel('Y position in mm')
-    plt.set(xlim=(0, 75), ylim=(0, 75))
+    
     plt.savefig(os.path.join(tmpfolder,"trajectory_mm"+suffix))
     plt.figure(figsize=(30, 10))
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
