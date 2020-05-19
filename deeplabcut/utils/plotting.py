@@ -64,12 +64,14 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
 
     plt.gca().invert_yaxis()
 
+
     sm = plt.cm.ScalarMappable(cmap=plt.get_cmap(cfg['colormap']), norm=plt.Normalize(vmin=0, vmax=len(bodyparts2plot)-1))
     sm._A = []
     cbar = plt.colorbar(sm,ticks=range(len(bodyparts2plot)))
     cbar.set_ticklabels(bodyparts2plot)
     plt.xlabel('X position in mm')
     plt.ylabel('Y position in mm')
+    ax.set(xlim=(0, 75), ylim=(0, 75))
     plt.savefig(os.path.join(tmpfolder,"trajectory_mm"+suffix))
     plt.figure(figsize=(30, 10))
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
