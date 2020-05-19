@@ -71,7 +71,7 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     cbar.set_ticklabels(bodyparts2plot)
     plt.xlabel('X position in mm')
     plt.ylabel('Y position in mm')
-    ax.set(xlim=(0, 75), ylim=(0, 75))
+    plt.set(xlim=(0, 75), ylim=(0, 75))
     plt.savefig(os.path.join(tmpfolder,"trajectory_mm"+suffix))
     plt.figure(figsize=(30, 10))
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
