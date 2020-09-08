@@ -54,7 +54,7 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     plt.xlabel('X position in pixels')
     plt.ylabel('Y position in pixels')
     plt.savefig(os.path.join(tmpfolder,"trajectory"+suffix))
-    plt.figure(figsize=(5, 5))
+    plt.figure(figsize=(7.5, 7.5))
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
