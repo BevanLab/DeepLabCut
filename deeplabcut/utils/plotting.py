@@ -91,6 +91,8 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     plt.ylabel('X-(dashed) and Y- (solid) position in pixels')
     plt.savefig(os.path.join(tmpfolder,"plot"+suffix))
 
+    plt.figure(figsize=(15, 5))
+    Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
 
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
@@ -102,7 +104,7 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     cbar = plt.colorbar(sm,ticks=range(len(bodyparts2plot)))
     cbar.set_ticklabels(bodyparts2plot)
     plt.xlabel('Frame Index')
-    plt.ylabel('X-(dashed) and Y- (solid) position in Centimeters')
+    plt.ylabel('X-(dashed) and Y- (solid) position in centimeters')
     plt.savefig(os.path.join(tmpfolder,"position_over_time_cm"+suffix))
 
     plt.figure(figsize=(30, 10))
