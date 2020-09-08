@@ -76,7 +76,9 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
 
     plt.figure(figsize=(30, 10))
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
-
+    fps = int(len(Dataframe[scorer][bodyparts2plot[0]]['x'].values)/(15*60))
+    Time = Time/fps
+    print("FPS: " + str(fps))
 
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
