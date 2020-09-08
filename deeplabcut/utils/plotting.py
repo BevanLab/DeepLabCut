@@ -58,8 +58,8 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
 
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
-        x = Dataframe[scorer][bp]['x'].values[Index]*(15/115.97)
-        y = Dataframe[scorer][bp]['y'].values[Index]*(15/115.97)
+        x = Dataframe[scorer][bp]['x'].values[Index]*(4/31)
+        y = Dataframe[scorer][bp]['y'].values[Index]*(4/31)
         plt.plot(x,y,'.',color=colors(bpindex),alpha=alphavalue)
 
     
@@ -70,10 +70,10 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     sm._A = []
     cbar = plt.colorbar(sm,ticks=range(len(bodyparts2plot)))
     cbar.set_ticklabels(bodyparts2plot)
-    plt.xlabel('X position in mm')
-    plt.ylabel('Y position in mm')
+    plt.xlabel('X position in cm')
+    plt.ylabel('Y position in cm')
     
-    plt.savefig(os.path.join(tmpfolder,"trajectory_mm"+suffix))
+    plt.savefig(os.path.join(tmpfolder,"trajectory_cm"+suffix))
     plt.figure(figsize=(30, 10))
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
 
