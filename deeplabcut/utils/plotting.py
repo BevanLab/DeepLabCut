@@ -82,8 +82,8 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
 
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
-        plt.plot(time_seconds[Index],Dataframe[scorer][bp]['x'].values[Index],'--',color=colors(bpindex),alpha=alphavalue)
-        plt.plot(time_seconds[Index],Dataframe[scorer][bp]['y'].values[Index],'-',color=colors(bpindex),alpha=alphavalue)
+        plt.plot(Time[Index],Dataframe[scorer][bp]['x'].values[Index],'--',color=colors(bpindex),alpha=alphavalue)
+        plt.plot(Time[Index],Dataframe[scorer][bp]['y'].values[Index],'-',color=colors(bpindex),alpha=alphavalue)
 
     sm = plt.cm.ScalarMappable(cmap=plt.get_cmap(cfg['colormap']), norm=plt.Normalize(vmin=0, vmax=len(bodyparts2plot)-1))
     sm._A = []
@@ -98,14 +98,15 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
 
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
-        plt.plot(Time[Index],Dataframe[scorer][bp]['x'].values[Index] * (4/31),'--',color=colors(bpindex),alpha=alphavalue)
-        plt.plot(Time[Index],Dataframe[scorer][bp]['y'].values[Index]* (4/31),'-',color=colors(bpindex),alpha=alphavalue)
+        plt.plot(time_seconds[Index],Dataframe[scorer][bp]['x'].values[Index] * (4/31),'--',color=colors(bpindex),alpha=alphavalue)
+        plt.plot(time_seconds[Index],Dataframe[scorer][bp]['y'].values[Index]* (4/31),'-',color=colors(bpindex),alpha=alphavalue)
 
     sm = plt.cm.ScalarMappable(cmap=plt.get_cmap(cfg['colormap']), norm=plt.Normalize(vmin=0, vmax=len(bodyparts2plot)-1))
     sm._A = []
     cbar = plt.colorbar(sm,ticks=range(len(bodyparts2plot)))
     cbar.set_ticklabels(bodyparts2plot)
-    plt.xlabel('Frame Index')
+    plt.xlabel('Time (sec)')
+    plt.title('Position Over Time: ' + vname)
     plt.ylabel('X-(dashed) and Y- (solid) position in centimeters')
     plt.savefig(os.path.join(tmpfolder,"position_over_time_cm"+suffix))
 
