@@ -17,6 +17,7 @@ import argparse
 from deeplabcut.utils import auxiliaryfunctions
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
 import os
 
 # https://stackoverflow.com/questions/14720331/how-to-generate-random-colors-in-matplotlib
@@ -33,8 +34,8 @@ def Histogram(vector,color,bins):
 
 def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,suffix='.pdf', vname = ''):
     ''' Plots poses vs time; pose x vs pose y; histogram of differences and likelihoods.'''
-    plt.rcParams['pdf.fonttype'] = 42
-    plt.rcParams['ps.fonttype'] = 42
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
     plt.figure(figsize=(8, 6))
     pcutoff = cfg['pcutoff']
     colors = get_cmap(len(bodyparts2plot),name = cfg['colormap'])
