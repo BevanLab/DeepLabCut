@@ -54,13 +54,13 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     plt.xlabel('X position in pixels')
     plt.ylabel('Y position in pixels')
     plt.savefig(os.path.join(tmpfolder,"trajectory"+suffix))
-    plt.figure(figsize=(40, 40))
+    plt.figure(figsize=(20, 20))
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
         plt.plot(Dataframe[scorer][bp]['x'].values[Index]*(4/31),Dataframe[scorer][bp]['y'].values[Index]*(4/31),'.',color=colors(bpindex),alpha=alphavalue)
 
-    plt.gca().invert_yaxis()
+    #plt.gca().invert_yaxis()
 
     sm = plt.cm.ScalarMappable(cmap=plt.get_cmap(cfg['colormap']), norm=plt.Normalize(vmin=0, vmax=len(bodyparts2plot)-1))
     sm._A = []
