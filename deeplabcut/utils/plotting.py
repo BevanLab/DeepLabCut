@@ -58,7 +58,7 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
-        plt.plot(Dataframe[scorer][bp]['x'].values[Index]*(4/31),Dataframe[scorer][bp]['y'].values[Index]*(4/31),'.',color=colors(bpindex),alpha=alphavalue)
+        plt.plot(Dataframe[scorer][bp]['x'].values[Index]*(4/31),Dataframe[scorer][bp]['y'].values[Index]*(4/31),'.',color=colors(bpindex),alpha=alphavalue, c=3)
 
     #plt.gca().invert_yaxis()
 
