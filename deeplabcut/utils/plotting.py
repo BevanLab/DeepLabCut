@@ -31,7 +31,7 @@ def Histogram(vector,color,bins):
     plt.hist(dvector,color=color,histtype='step',bins=bins)
 #    fig.colorbar(im, ax=ax)
 
-def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,suffix='.pdf'):
+def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,suffix='.pdf', vname = ''):
     ''' Plots poses vs time; pose x vs pose y; histogram of differences and likelihoods.'''
     plt.figure(figsize=(8, 6))
     pcutoff = cfg['pcutoff']
@@ -51,7 +51,7 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     plt.xlabel('X position in pixels')
     plt.ylabel('Y position in pixels')
     plt.savefig(os.path.join(tmpfolder,"trajectory"+suffix))
-    plt.figure(figsize=(30, 30))
+    plt.figure(figsize=(40, 40))
     Time=np.arange(np.size(Dataframe[scorer][bodyparts2plot[0]]['x'].values))
     for bpindex, bp in enumerate(bodyparts2plot):
         Index=Dataframe[scorer][bp]['likelihood'].values > pcutoff
@@ -65,6 +65,7 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
     cbar.set_ticklabels(bodyparts2plot)
     plt.xlabel('X position in centimeters')
     plt.ylabel('Y position in centimeters')
+    plt.title("Trajectory Plot: " + vname)
     plt.savefig(os.path.join(tmpfolder,"trajectory_cm"+suffix))
 
 
@@ -203,7 +204,7 @@ def plot_trajectories(config, videos, videotype='.avi', shuffle=1, trainingsetin
                 auxiliaryfunctions.attempttomakefolder(os.path.join(basefolder,'plot-poses'))
                 tmpfolder = os.path.join(basefolder,'plot-poses', vname)
                 auxiliaryfunctions.attempttomakefolder(tmpfolder)
-                PlottingResults(tmpfolder, Dataframe, DLCscorer, cfg, bodyparts, showfigures, suffix+outformat)
+                PlottingResults(tmpfolder, Dataframe, DLCscorer, cfg, bodyparts, showfigures, suffix+outformat, vname = vname)
 
     print('Plots created! Please check the directory "plot-poses" within the video directory')
 
