@@ -64,7 +64,7 @@ def PlottingResults(tmpfolder,Dataframe,scorer,cfg, bodyparts2plot, showfigures,
 
     
     plt.gca().invert_yaxis()
-    plt.set(xlim=(0, 75), ylim=(0, 75))
+    #plt.set(xlim=(0, 75), ylim=(0, 75))
 
     sm = plt.cm.ScalarMappable(cmap=plt.get_cmap(cfg['colormap']), norm=plt.Normalize(vmin=0, vmax=len(bodyparts2plot)-1))
     sm._A = []
